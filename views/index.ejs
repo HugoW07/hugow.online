@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= cv.personal.name %> - <%= cv.personal.title %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-brand">
+        <span class="logo"><%= cv.personal.name.split(' ')[0] %></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="title-line">Hello, I'm</span>
+            <span class="title-line name-highlight"
+              ><%= cv.personal.name %></span
+            >
+            <span class="title-line"><%= cv.personal.title %></span>
+          </h1>
+          <p class="hero-description"><%= cv.summary %></p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">
+              <span>Get In Touch</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="/api/cv" class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              <span>Download CV</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="image-container">
+            <div class="profile-card">
+              <div class="card-glow"></div>
+              <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="floating-elements">
+                <div class="float-item" style="--delay: 0s">
+                  <i class="fab fa-react"></i>
+                </div>
+                <div class="float-item" style="--delay: 1s">
+                  <i class="fab fa-node-js"></i>
+                </div>
+                <div class="float-item" style="--delay: 2s">
+                  <i class="fab fa-python"></i>
+                </div>
+                <div class="float-item" style="--delay: 3s">
+                  <i class="fab fa-docker"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Skills & Expertise</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Technical Skills</h3>
+            <div class="skill-list">
+              <% cv.skills.technical.forEach(skill => { %>
+              <span class="skill-tag"><%= skill %></span>
+              <% }) %>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
+            <div class="skill-list">
+              <% cv.skills.frameworks.forEach(skill => { %>
+              <span class="skill-tag"><%= skill %></span>
+              <% }) %>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Tools</h3>
+            <div class="skill-list">
+              <% cv.skills.tools.forEach(skill => { %>
+              <span class="skill-tag"><%= skill %></span>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Career Journey</span>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+        <div class="timeline">
+          <% cv.experience.forEach((job, index) => { %>
+          <div
+            class="timeline-item"
+            data-aos="fade-up"
+            data-aos-delay="<%= index * 200 %>"
+          >
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="job-header">
+                <h3><%= job.title %></h3>
+                <span class="company"><%= job.company %></span>
+                <span class="period"><%= job.period %></span>
+              </div>
+              <p><%= job.description %></p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+          <% cv.projects.forEach((project, index) => { %>
+          <div
+            class="project-card"
+            data-aos="fade-up"
+            data-aos-delay="<%= index * 150 %>"
+          >
+            <div class="project-header">
+              <h3><%= project.name %></h3>
+              <div class="project-links">
+                <i class="fas fa-external-link-alt"></i>
+                <i class="fab fa-github"></i>
+              </div>
+            </div>
+            <p><%= project.description %></p>
+            <div class="tech-stack">
+              <% project.tech.forEach(tech => { %>
+              <span class="tech-tag"><%= tech %></span>
+              <% }) %>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Work Together</h2>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:<%= cv.personal.email %>"
+                  ><%= cv.personal.email %></a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <a href="tel:<%= cv.personal.phone %>"
+                  ><%= cv.personal.phone %></a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Location</h4>
+                <span><%= cv.personal.location %></span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <input type="text" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Your Email" required />
+              </div>
+              <div class="form-group">
+                <textarea
+                  placeholder="Your Message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <span>Send Message</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span
+              >&copy; 2025 <%= cv.personal.name %>. All rights reserved.</span
+            >
+          </div>
+          <div class="footer-right">
+            <a href="https://<%= cv.personal.linkedin %>" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://<%= cv.personal.github %>" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a href="https://<%= cv.personal.website %>" target="_blank"
+              ><i class="fas fa-globe"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>
