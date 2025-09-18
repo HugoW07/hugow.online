@@ -1,34 +1,32 @@
 {
   "name": "hugow-cv-website",
   "version": "1.0.0",
-  "description": "Personal CV website for Hugo",
-  "main": "dist/app.js",
+  "description": "Personal CV website for Hugo using Bun",
+  "main": "src/app.ts",
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "concurrently \"tsc -w\" \"nodemon dist/app.js\"",
-    "postinstall": "npm run build"
+    "build": "bun build src/app.ts --outdir dist --target bun",
+    "start": "bun run src/app.ts",
+    "dev": "bun --watch src/app.ts",
+    "prod": "bun run dist/app.js"
   },
   "keywords": [
     "cv",
     "portfolio",
-    "express",
+    "bun",
     "typescript"
   ],
   "author": "Hugo",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "ejs": "^3.1.9"
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^24.5.2",
+    "ejs": "^3.1.10"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.5.0",
-    "typescript": "^5.1.6",
-    "concurrently": "^8.2.0",
-    "nodemon": "^3.0.1"
+    "@types/bun": "latest"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "bun": ">=1.0.0"
   }
 }
