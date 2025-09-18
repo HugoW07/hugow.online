@@ -1,130 +1,436 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= cv.personal.name %> - <%= cv.personal.title %></title>
-    <link rel="stylesheet" href="/styles/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#f0f9ff",
+                100: "#e0f2fe",
+                200: "#bae6fd",
+                300: "#7dd3fc",
+                400: "#38bdf8",
+                500: "#0ea5e9",
+                600: "#0284c7",
+                700: "#0369a1",
+                800: "#075985",
+                900: "#0c4a6e",
+                950: "#082f49",
+              },
+              accent: {
+                400: "#a78bfa",
+                500: "#8b5cf6",
+                600: "#7c3aed",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              gradient: "gradient 15s ease infinite",
+              glow: "glow 2s ease-in-out infinite",
+              "slide-up": "slide-up 0.5s ease-out",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              gradient: {
+                "0%, 100%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+              },
+              glow: {
+                "0%, 100%": { opacity: 1 },
+                "50%": { opacity: 0.5 },
+              },
+              "slide-up": {
+                "0%": { transform: "translateY(100px)", opacity: 0 },
+                "100%": { transform: "translateY(0)", opacity: 1 },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .glow-effect {
+        box-shadow: 0 0 50px rgba(14, 165, 233, 0.3);
+      }
+      .text-glow {
+        text-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+      }
+      .animate-gradient {
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      .hero-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      .skill-card:hover {
+        transform: translateY(-5px) rotateX(5deg);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      .project-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      .typing-effect {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid #0ea5e9;
+        animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+      }
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #0ea5e9;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+  <body class="bg-gray-950 text-gray-100 overflow-x-hidden">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary-950 via-gray-900 to-accent-600/20"
+      ></div>
+      <div
+        class="absolute top-20 left-20 w-72 h-72 bg-primary-500/20 rounded-full filter blur-3xl animate-float"
+      ></div>
+      <div
+        class="absolute bottom-20 right-20 w-96 h-96 bg-accent-500/20 rounded-full filter blur-3xl animate-float"
+        style="animation-delay: 2s"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-600/10 rounded-full filter blur-3xl animate-float"
+        style="animation-delay: 4s"
+      ></div>
+    </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-      <div class="nav-brand">
-        <span class="logo"><%= cv.personal.name.split(' ')[0] %></span>
+    <nav
+      class="fixed top-0 w-full z-50 glass-effect transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-lg"
+                ><%= cv.personal.name.charAt(0) %></span
+              >
+            </div>
+            <span class="font-bold text-xl gradient-text"
+              ><%= cv.personal.name.split(' ')[0] %></span
+            >
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#home"
+              class="hover:text-primary-400 transition-colors duration-300"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="hover:text-primary-400 transition-colors duration-300"
+              >About</a
+            >
+            <a
+              href="#experience"
+              class="hover:text-primary-400 transition-colors duration-300"
+              >Experience</a
+            >
+            <a
+              href="#projects"
+              class="hover:text-primary-400 transition-colors duration-300"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-primary-400 transition-colors duration-300"
+              >Contact</a
+            >
+          </div>
+          <button class="md:hidden" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
       </div>
-      <ul class="nav-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden glass-effect">
+        <div class="px-6 py-4 space-y-3">
+          <a
+            href="#home"
+            class="block hover:text-primary-400 transition-colors duration-300"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="block hover:text-primary-400 transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#experience"
+            class="block hover:text-primary-400 transition-colors duration-300"
+            >Experience</a
+          >
+          <a
+            href="#projects"
+            class="block hover:text-primary-400 transition-colors duration-300"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="block hover:text-primary-400 transition-colors duration-300"
+            >Contact</a
+          >
+        </div>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="hero-background">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="hero-title">
-            <span class="title-line">Hello, I'm</span>
-            <span class="title-line name-highlight"
-              ><%= cv.personal.name %></span
-            >
-            <span class="title-line"><%= cv.personal.title %></span>
-          </h1>
-          <p class="hero-description"><%= cv.summary %></p>
-          <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary">
-              <span>Get In Touch</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="/api/cv" class="btn btn-secondary">
-              <i class="fas fa-download"></i>
-              <span>Download CV</span>
-            </a>
-          </div>
-        </div>
-        <div class="hero-image">
-          <div class="image-container">
-            <div class="profile-card">
-              <div class="card-glow"></div>
-              <div class="profile-avatar">
-                <i class="fas fa-user"></i>
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center relative px-6 pt-20"
+    >
+      <div class="max-w-7xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8 animate-slide-up">
+            <div>
+              <p class="text-primary-400 font-mono text-sm mb-2">Hello, I'm</p>
+              <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                <span class="gradient-text"><%= cv.personal.name %></span>
+              </h1>
+              <div class="text-2xl md:text-3xl text-gray-300 typing-effect">
+                <%= cv.personal.title %>
               </div>
-              <div class="floating-elements">
-                <div class="float-item" style="--delay: 0s">
-                  <i class="fab fa-react"></i>
-                </div>
-                <div class="float-item" style="--delay: 1s">
-                  <i class="fab fa-node-js"></i>
-                </div>
-                <div class="float-item" style="--delay: 2s">
-                  <i class="fab fa-python"></i>
-                </div>
-                <div class="float-item" style="--delay: 3s">
-                  <i class="fab fa-docker"></i>
+            </div>
+            <p class="text-gray-400 text-lg leading-relaxed">
+              <%= cv.summary %>
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                class="group px-8 py-3 bg-gradient-to-r from-primary-500 to-accent-600 rounded-full font-semibold hover:from-primary-600 hover:to-accent-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/50"
+              >
+                Get In Touch
+                <i
+                  class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="/api/cv"
+                class="px-8 py-3 glass-effect rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+              >
+                <i class="fas fa-download mr-2"></i>
+                Download CV
+              </a>
+            </div>
+            <div class="flex space-x-6">
+              <a
+                href="https://<%= cv.personal.linkedin %>"
+                target="_blank"
+                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://<%= cv.personal.github %>"
+                target="_blank"
+                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="mailto:<%= cv.personal.email %>"
+                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+              >
+                <i class="fas fa-envelope"></i>
+              </a>
+              <a
+                href="https://<%= cv.personal.website %>"
+                target="_blank"
+                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+              >
+                <i class="fas fa-globe"></i>
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div
+              class="relative w-full h-[500px] flex items-center justify-center"
+            >
+              <!-- 3D Card Effect -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                  class="w-80 h-80 glass-effect rounded-3xl p-8 glow-effect animate-float relative overflow-hidden"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-600/20"
+                  ></div>
+                  <div
+                    class="relative z-10 flex flex-col items-center justify-center h-full"
+                  >
+                    <div
+                      class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center mb-6 animate-pulse"
+                    >
+                      <i class="fas fa-code text-5xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Full Stack</h3>
+                    <p class="text-gray-400 text-center">
+                      Creating Digital Excellence
+                    </p>
+                  </div>
+                  <!-- Floating Tech Icons -->
+                  <div
+                    class="absolute top-4 left-4 text-3xl text-primary-400 animate-float"
+                  >
+                    <i class="fab fa-react"></i>
+                  </div>
+                  <div
+                    class="absolute top-4 right-4 text-3xl text-green-400 animate-float"
+                    style="animation-delay: 1s"
+                  >
+                    <i class="fab fa-node-js"></i>
+                  </div>
+                  <div
+                    class="absolute bottom-4 left-4 text-3xl text-yellow-400 animate-float"
+                    style="animation-delay: 2s"
+                  >
+                    <i class="fab fa-python"></i>
+                  </div>
+                  <div
+                    class="absolute bottom-4 right-4 text-3xl text-blue-400 animate-float"
+                    style="animation-delay: 3s"
+                  >
+                    <i class="fab fa-docker"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <span>Scroll Down</span>
-        <div class="scroll-line"></div>
+      <!-- Scroll Indicator -->
+      <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <i class="fas fa-chevron-down text-2xl text-primary-400"></i>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">About Me</span>
-          <h2 class="section-title">Skills & Expertise</h2>
+    <!-- About/Skills Section -->
+    <section id="about" class="py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-primary-400 font-mono text-sm mb-2">About Me</p>
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+            Skills & Expertise
+          </h2>
         </div>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3><i class="fas fa-code"></i> Technical Skills</h3>
-            <div class="skill-list">
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Technical Skills -->
+          <div
+            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+          >
+            <div
+              class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-code text-2xl text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+            <div class="flex flex-wrap gap-3">
               <% cv.skills.technical.forEach(skill => { %>
-              <span class="skill-tag"><%= skill %></span>
+              <span
+                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-primary-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+              >
+                <%= skill %>
+              </span>
               <% }) %>
             </div>
           </div>
-          <div class="skill-category">
-            <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
-            <div class="skill-list">
+          <!-- Frameworks -->
+          <div
+            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+          >
+            <div
+              class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-layer-group text-2xl text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-6">Frameworks</h3>
+            <div class="flex flex-wrap gap-3">
               <% cv.skills.frameworks.forEach(skill => { %>
-              <span class="skill-tag"><%= skill %></span>
+              <span
+                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+              >
+                <%= skill %>
+              </span>
               <% }) %>
             </div>
           </div>
-          <div class="skill-category">
-            <h3><i class="fas fa-tools"></i> Tools</h3>
-            <div class="skill-list">
+          <!-- Tools -->
+          <div
+            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+          >
+            <div
+              class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center mb-6"
+            >
+              <i class="fas fa-tools text-2xl text-white"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-6">Tools</h3>
+            <div class="flex flex-wrap gap-3">
               <% cv.skills.tools.forEach(skill => { %>
-              <span class="skill-tag"><%= skill %></span>
+              <span
+                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-primary-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+              >
+                <%= skill %>
+              </span>
               <% }) %>
             </div>
           </div>
@@ -133,27 +439,45 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Career Journey</span>
-          <h2 class="section-title">Professional Experience</h2>
+    <section id="experience" class="py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-primary-400 font-mono text-sm mb-2">Career Journey</p>
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+            Professional Experience
+          </h2>
         </div>
-        <div class="timeline">
+        <div class="relative">
+          <!-- Timeline Line -->
+          <div
+            class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary-500 to-accent-600"
+          ></div>
+
           <% cv.experience.forEach((job, index) => { %>
           <div
-            class="timeline-item"
-            data-aos="fade-up"
-            data-aos-delay="<%= index * 200 %>"
+            class="relative flex items-center mb-12 <%= index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse' %>"
           >
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <div class="job-header">
-                <h3><%= job.title %></h3>
-                <span class="company"><%= job.company %></span>
-                <span class="period"><%= job.period %></span>
+            <!-- Timeline Dot -->
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary-500 rounded-full ring-4 ring-primary-500/20 z-10"
+            ></div>
+
+            <!-- Content -->
+            <div
+              class="ml-16 md:ml-0 md:w-1/2 <%= index % 2 === 0 ? 'md:pr-12' : 'md:pl-12' %>"
+            >
+              <div
+                class="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105 transform"
+              >
+                <span class="text-primary-400 font-mono text-sm"
+                  ><%= job.period %></span
+                >
+                <h3 class="text-2xl font-bold mt-2 mb-1"><%= job.title %></h3>
+                <p class="text-accent-400 font-semibold mb-3">
+                  <%= job.company %>
+                </p>
+                <p class="text-gray-400"><%= job.description %></p>
               </div>
-              <p><%= job.description %></p>
             </div>
           </div>
           <% }) %>
