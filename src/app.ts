@@ -34,21 +34,21 @@ const cvData = {
   experience: [
     {
       title: "Senior Full Stack Developer",
-      company: "Tech Innovations AB",
+      company: "Telenor",
       period: "2022 - Present",
       description:
         "Lead development of scalable web applications using React and Node.js. Improved application performance by 40% and mentored junior developers.",
     },
     {
       title: "Frontend Developer",
-      company: "Digital Solutions Inc",
+      company: "H&M",
       period: "2020 - 2022",
       description:
         "Developed responsive user interfaces and collaborated with design teams to implement pixel-perfect designs. Built reusable component libraries.",
     },
     {
       title: "Junior Developer",
-      company: "StartupTech",
+      company: "OpenAI",
       period: "2019 - 2020",
       description:
         "Contributed to various projects using modern JavaScript frameworks. Gained experience in agile development methodologies.",
