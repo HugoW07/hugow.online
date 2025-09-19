@@ -486,122 +486,87 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Portfolio</span>
-          <h2 class="section-title">Featured Projects</h2>
+    <section id="projects" class="py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-primary-400 font-mono text-sm mb-2">Portfolio</p>
+          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+            Featured Projects
+          </h2>
         </div>
-        <div class="projects-grid">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <% cv.projects.forEach((project, index) => { %>
           <div
-            class="project-card"
-            data-aos="fade-up"
-            data-aos-delay="<%= index * 150 %>"
+            class="group glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-500 project-card relative overflow-hidden"
           >
-            <div class="project-header">
-              <h3><%= project.name %></h3>
-              <div class="project-links">
-                <i class="fas fa-external-link-alt"></i>
-                <i class="fab fa-github"></i>
+            <!-- Gradient overlay on hover -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-accent-600/0 group-hover:from-primary-500/10 group-hover:to-accent-600/10 transition-all duration-500"
+            ></div>
+
+            <div class="relative z-10">
+              <!-- Project Header -->
+              <div class="flex justify-between items-start mb-4">
+                <div
+                  class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center"
+                >
+                  <i class="fas fa-folder text-xl text-white"></i>
+                </div>
+                <div class="flex space-x-3">
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-primary-400 transition-colors duration-300"
+                  >
+                    <i class="fas fa-external-link-alt text-lg"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-primary-400 transition-colors duration-300"
+                  >
+                    <i class="fab fa-github text-lg"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-            <p><%= project.description %></p>
-            <div class="tech-stack">
-              <% project.tech.forEach(tech => { %>
-              <span class="tech-tag"><%= tech %></span>
-              <% }) %>
+
+              <!-- Project Content -->
+              <h3
+                class="text-xl font-bold mb-3 group-hover:text-primary-400 transition-colors duration-300"
+              >
+                <%= project.name %>
+              </h3>
+              <p class="text-gray-400 mb-6 line-clamp-3">
+                <%= project.description %>
+              </p>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2">
+                <% project.tech.forEach(tech => { %>
+                <span
+                  class="px-3 py-1 text-xs font-mono text-primary-400 glass-effect rounded-full hover:bg-primary-500/20 transition-all duration-300"
+                >
+                  <%= tech %>
+                </span>
+                <% }) %>
+              </div>
             </div>
           </div>
           <% }) %>
         </div>
-      </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Get In Touch</span>
-          <h2 class="section-title">Let's Work Together</h2>
-        </div>
-        <div class="contact-content">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <a href="mailto:<%= cv.personal.email %>"
-                  ><%= cv.personal.email %></a
-                >
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Phone</h4>
-                <a href="tel:<%= cv.personal.phone %>"
-                  ><%= cv.personal.phone %></a
-                >
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Location</h4>
-                <span><%= cv.personal.location %></span>
-              </div>
-            </div>
-          </div>
-          <div class="contact-form">
-            <form>
-              <div class="form-group">
-                <input type="text" placeholder="Your Name" required />
-              </div>
-              <div class="form-group">
-                <input type="email" placeholder="Your Email" required />
-              </div>
-              <div class="form-group">
-                <textarea
-                  placeholder="Your Message"
-                  rows="5"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                <span>Send Message</span>
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
+        <!-- View More Button -->
+        <div class="text-center mt-12">
+          <a
+            href="https://<%= cv.personal.github %>"
+            target="_blank"
+            class="inline-flex items-center px-8 py-3 glass-effect rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 group"
+          >
+            View More Projects
+            <i
+              class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+            ></i>
+          </a>
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-left">
-            <span
-              >&copy; 2025 <%= cv.personal.name %>. All rights reserved.</span
-            >
-          </div>
-          <div class="footer-right">
-            <a href="https://<%= cv.personal.linkedin %>" target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a href="https://<%= cv.personal.github %>" target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="https://<%= cv.personal.website %>" target="_blank"
-              ><i class="fas fa-globe"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script src="/js/main.js"></script>
   </body>
 </html>
