@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= cv.personal.name %> - <%= cv.personal.title %></title>
+    <title>Hugo Wilinski - Full Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
@@ -18,23 +18,28 @@
         theme: {
           extend: {
             colors: {
-              primary: {
-                50: "#f0f9ff",
-                100: "#e0f2fe",
-                200: "#bae6fd",
-                300: "#7dd3fc",
-                400: "#38bdf8",
-                500: "#0ea5e9",
-                600: "#0284c7",
-                700: "#0369a1",
-                800: "#075985",
-                900: "#0c4a6e",
-                950: "#082f49",
+              obsidian: {
+                50: "#f8fafc",
+                100: "#f1f5f9",
+                200: "#e2e8f0",
+                300: "#cbd5e1",
+                400: "#94a3b8",
+                500: "#64748b",
+                600: "#475569",
+                700: "#334155",
+                800: "#1e293b",
+                900: "#0f172a",
+                950: "#020617",
               },
               accent: {
-                400: "#a78bfa",
-                500: "#8b5cf6",
-                600: "#7c3aed",
+                400: "#facc15",
+                500: "#eab308",
+                600: "#ca8a04",
+              },
+              electric: {
+                400: "#06b6d4",
+                500: "#0891b2",
+                600: "#0e7490",
               },
             },
             fontFamily: {
@@ -46,6 +51,8 @@
               gradient: "gradient 15s ease infinite",
               glow: "glow 2s ease-in-out infinite",
               "slide-up": "slide-up 0.5s ease-out",
+              pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              shimmer: "shimmer 2s linear infinite",
             },
             keyframes: {
               float: {
@@ -64,6 +71,10 @@
                 "0%": { transform: "translateY(100px)", opacity: 0 },
                 "100%": { transform: "translateY(0)", opacity: 1 },
               },
+              shimmer: {
+                from: { backgroundPosition: "0 0" },
+                to: { backgroundPosition: "-200% 0" },
+              },
             },
           },
         },
@@ -71,40 +82,54 @@
     </script>
     <style>
       .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(
+          135deg,
+          #facc15 0%,
+          #06b6d4 50%,
+          #ffffff 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
       .glass-effect {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
+      .black-glass {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
       .glow-effect {
-        box-shadow: 0 0 50px rgba(14, 165, 233, 0.3);
+        box-shadow: 0 0 50px rgba(250, 204, 21, 0.3);
       }
       .text-glow {
-        text-shadow: 0 0 30px rgba(14, 165, 233, 0.5);
+        text-shadow: 0 0 30px rgba(250, 204, 21, 0.8);
       }
       .animate-gradient {
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;
       }
       .hero-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(0, 0, 0, 0.9) 0%,
+          #000000 70%
+        );
       }
       .skill-card:hover {
-        transform: translateY(-5px) rotateX(5deg);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: translateY(-8px) rotateX(2deg);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
       }
       .project-card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
       }
       .project-card:hover {
-        transform: translateY(-10px) scale(1.02);
+        transform: translateY(-12px) scale(1.03);
+        background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
       }
       @keyframes typing {
         from {
@@ -117,7 +142,7 @@
       .typing-effect {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 3px solid #0ea5e9;
+        border-right: 3px solid #facc15;
         animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
       }
       @keyframes blink {
@@ -126,109 +151,102 @@
           border-color: transparent;
         }
         50% {
-          border-color: #0ea5e9;
+          border-color: #facc15;
         }
+      }
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        background-size: 200% 100%;
+        animation: shimmer 2s infinite;
+      }
+      .neon-border {
+        border: 2px solid;
+        border-image: linear-gradient(45deg, #facc15, #06b6d4) 1;
+      }
+      .black-gradient {
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #1a1a1a 50%,
+          #000000 100%
+        );
+      }
+      .dark-grid {
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
       }
     </style>
   </head>
-  <body class="bg-gray-950 text-gray-100 overflow-x-hidden">
+  <body class="bg-black text-white overflow-x-hidden">
     <!-- Animated Background -->
-    <div class="fixed inset-0 -z-10">
+    <div class="fixed inset-0 -z-10 black-gradient dark-grid">
       <div
-        class="absolute inset-0 bg-gradient-to-br from-primary-950 via-gray-900 to-accent-600/20"
+        class="absolute top-20 left-20 w-96 h-96 bg-accent-500/10 rounded-full filter blur-3xl animate-float"
       ></div>
       <div
-        class="absolute top-20 left-20 w-72 h-72 bg-primary-500/20 rounded-full filter blur-3xl animate-float"
-      ></div>
-      <div
-        class="absolute bottom-20 right-20 w-96 h-96 bg-accent-500/20 rounded-full filter blur-3xl animate-float"
+        class="absolute bottom-20 right-20 w-80 h-80 bg-electric-500/10 rounded-full filter blur-3xl animate-float"
         style="animation-delay: 2s"
       ></div>
       <div
-        class="absolute top-1/2 left-1/2 w-96 h-96 bg-primary-600/10 rounded-full filter blur-3xl animate-float"
+        class="absolute top-1/2 left-1/2 w-72 h-72 bg-white/5 rounded-full filter blur-3xl animate-float"
         style="animation-delay: 4s"
       ></div>
     </div>
 
     <!-- Navigation -->
     <nav
-      class="fixed top-0 w-full z-50 glass-effect transition-all duration-300"
+      class="fixed top-0 w-full z-50 black-glass transition-all duration-300"
       id="navbar"
     >
       <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center space-x-3">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center"
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center shadow-lg"
             >
-              <span class="text-white font-bold text-lg"
-                ><%= cv.personal.name.charAt(0) %></span
-              >
+              <span class="text-black font-bold text-xl">H</span>
             </div>
-            <span class="font-bold text-xl gradient-text"
-              ><%= cv.personal.name.split(' ')[0] %></span
-            >
+            <span class="font-bold text-2xl gradient-text">Hugo</span>
           </div>
           <div class="hidden md:flex space-x-8">
             <a
               href="#home"
-              class="hover:text-primary-400 transition-colors duration-300"
+              class="hover:text-accent-400 transition-colors duration-300 font-medium"
               >Home</a
             >
             <a
               href="#about"
-              class="hover:text-primary-400 transition-colors duration-300"
+              class="hover:text-accent-400 transition-colors duration-300 font-medium"
               >About</a
             >
             <a
               href="#experience"
-              class="hover:text-primary-400 transition-colors duration-300"
+              class="hover:text-accent-400 transition-colors duration-300 font-medium"
               >Experience</a
             >
             <a
               href="#projects"
-              class="hover:text-primary-400 transition-colors duration-300"
+              class="hover:text-accent-400 transition-colors duration-300 font-medium"
               >Projects</a
             >
             <a
               href="#contact"
-              class="hover:text-primary-400 transition-colors duration-300"
+              class="hover:text-accent-400 transition-colors duration-300 font-medium"
               >Contact</a
             >
           </div>
           <button class="md:hidden" onclick="toggleMobileMenu()">
             <i class="fas fa-bars text-2xl"></i>
           </button>
-        </div>
-      </div>
-      <!-- Mobile Menu -->
-      <div id="mobileMenu" class="hidden md:hidden glass-effect">
-        <div class="px-6 py-4 space-y-3">
-          <a
-            href="#home"
-            class="block hover:text-primary-400 transition-colors duration-300"
-            >Home</a
-          >
-          <a
-            href="#about"
-            class="block hover:text-primary-400 transition-colors duration-300"
-            >About</a
-          >
-          <a
-            href="#experience"
-            class="block hover:text-primary-400 transition-colors duration-300"
-            >Experience</a
-          >
-          <a
-            href="#projects"
-            class="block hover:text-primary-400 transition-colors duration-300"
-            >Projects</a
-          >
-          <a
-            href="#contact"
-            class="block hover:text-primary-400 transition-colors duration-300"
-            >Contact</a
-          >
         </div>
       </div>
     </nav>
@@ -242,21 +260,27 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="space-y-8 animate-slide-up">
             <div>
-              <p class="text-primary-400 font-mono text-sm mb-2">Hello, I'm</p>
-              <h1 class="text-5xl md:text-7xl font-bold mb-4">
-                <span class="gradient-text"><%= cv.personal.name %></span>
+              <p class="text-accent-400 font-mono text-sm mb-2 tracking-wider">
+                → Hello, I'm
+              </p>
+              <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-none">
+                <span class="gradient-text text-glow">Hugo Wilinski.</span>
               </h1>
-              <div class="text-2xl md:text-3xl text-gray-300 typing-effect">
-                <%= cv.personal.title %>
+              <div
+                class="text-3xl md:text-4xl text-gray-300 typing-effect font-light"
+              >
+                Full Stack Developer
               </div>
             </div>
-            <p class="text-gray-400 text-lg leading-relaxed">
-              <%= cv.summary %>
+            <p class="text-gray-400 text-xl leading-relaxed max-w-lg">
+              Passionate full-stack developer with expertise in modern web
+              technologies. I create innovative solutions that bridge the gap
+              between design and functionality.
             </p>
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-wrap gap-6">
               <a
                 href="#contact"
-                class="group px-8 py-3 bg-gradient-to-r from-primary-500 to-accent-600 rounded-full font-semibold hover:from-primary-600 hover:to-accent-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/50"
+                class="group px-10 py-4 bg-gradient-to-r from-accent-500 to-electric-500 rounded-full font-semibold text-black hover:from-accent-400 hover:to-electric-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/50"
               >
                 Get In Touch
                 <i
@@ -265,37 +289,37 @@
               </a>
               <a
                 href="/api/cv"
-                class="px-8 py-3 glass-effect rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                class="px-10 py-4 black-glass rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 border border-white/20"
               >
                 <i class="fas fa-download mr-2"></i>
                 Download CV
               </a>
             </div>
-            <div class="flex space-x-6">
+            <div class="flex space-x-8 pt-4">
               <a
-                href="https://<%= cv.personal.linkedin %>"
+                href="https://linkedin.com/in/Hugo Wilinski"
                 target="_blank"
-                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+                class="text-3xl hover:text-accent-400 transition-colors duration-300 hover:scale-110 transform"
               >
                 <i class="fab fa-linkedin"></i>
               </a>
               <a
-                href="https://<%= cv.personal.github %>"
+                href="https://github.com/HugoW07"
                 target="_blank"
-                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+                class="text-3xl hover:text-accent-400 transition-colors duration-300 hover:scale-110 transform"
               >
                 <i class="fab fa-github"></i>
               </a>
               <a
-                href="mailto:<%= cv.personal.email %>"
-                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+                href="mailto:h@qarek.nu"
+                class="text-3xl hover:text-accent-400 transition-colors duration-300 hover:scale-110 transform"
               >
                 <i class="fas fa-envelope"></i>
               </a>
               <a
-                href="https://<%= cv.personal.website %>"
+                href="https://hugow.online"
                 target="_blank"
-                class="text-2xl hover:text-primary-400 transition-colors duration-300 hover:scale-110 transform"
+                class="text-3xl hover:text-accent-400 transition-colors duration-300 hover:scale-110 transform"
               >
                 <i class="fas fa-globe"></i>
               </a>
@@ -303,49 +327,50 @@
           </div>
           <div class="relative">
             <div
-              class="relative w-full h-[500px] flex items-center justify-center"
+              class="relative w-full h-[600px] flex items-center justify-center"
             >
-              <!-- 3D Card Effect -->
+              <!-- Main 3D Card -->
               <div class="absolute inset-0 flex items-center justify-center">
                 <div
-                  class="w-80 h-80 glass-effect rounded-3xl p-8 glow-effect animate-float relative overflow-hidden"
+                  class="w-96 h-96 black-glass rounded-3xl p-8 glow-effect animate-float relative overflow-hidden neon-border"
                 >
-                  <div
-                    class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-600/20"
-                  ></div>
+                  <div class="absolute inset-0 shimmer"></div>
                   <div
                     class="relative z-10 flex flex-col items-center justify-center h-full"
                   >
                     <div
-                      class="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center mb-6 animate-pulse"
+                      class="w-40 h-40 rounded-full bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center mb-8 animate-pulse shadow-2xl"
                     >
-                      <i class="fas fa-code text-5xl text-white"></i>
+                      <i class="fas fa-code text-6xl text-black"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-2">Full Stack</h3>
-                    <p class="text-gray-400 text-center">
+                    <h3 class="text-3xl font-bold mb-3 gradient-text">
+                      Full Stack
+                    </h3>
+                    <p class="text-gray-400 text-center text-lg">
                       Creating Digital Excellence
                     </p>
                   </div>
+
                   <!-- Floating Tech Icons -->
                   <div
-                    class="absolute top-4 left-4 text-3xl text-primary-400 animate-float"
+                    class="absolute top-6 left-6 text-4xl text-accent-400 animate-float"
                   >
                     <i class="fab fa-react"></i>
                   </div>
                   <div
-                    class="absolute top-4 right-4 text-3xl text-green-400 animate-float"
+                    class="absolute top-6 right-6 text-4xl text-green-400 animate-float"
                     style="animation-delay: 1s"
                   >
                     <i class="fab fa-node-js"></i>
                   </div>
                   <div
-                    class="absolute bottom-4 left-4 text-3xl text-orange-400 animate-float"
+                    class="absolute bottom-6 left-6 text-4xl text-blue-400 animate-float"
                     style="animation-delay: 2s"
                   >
-                    <i class="fab fa-swift"></i>
+                    <i class="fab fa-python"></i>
                   </div>
                   <div
-                    class="absolute bottom-4 right-4 text-3xl text-blue-400 animate-float"
+                    class="absolute bottom-6 right-6 text-4xl text-electric-400 animate-float"
                     style="animation-delay: 3s"
                   >
                     <i class="fab fa-docker"></i>
@@ -360,78 +385,136 @@
       <div
         class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
       >
-        <i class="fas fa-chevron-down text-2xl text-primary-400"></i>
+        <i class="fas fa-chevron-down text-3xl text-accent-400"></i>
       </div>
     </section>
 
     <!-- About/Skills Section -->
-    <section id="about" class="py-20 px-6">
+    <section id="about" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-primary-400 font-mono text-sm mb-2">About Me</p>
-          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+        <div class="text-center mb-20">
+          <p class="text-accent-400 font-mono text-sm mb-4 tracking-wider">
+            → About Me
+          </p>
+          <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-4">
             Skills & Expertise
           </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-accent-500 to-electric-500 mx-auto"
+          ></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-10">
           <!-- Technical Skills -->
           <div
-            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 skill-card border border-white/10"
           >
             <div
-              class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6"
+              class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center mb-8 shadow-xl"
             >
-              <i class="fas fa-code text-2xl text-white"></i>
+              <i class="fas fa-code text-3xl text-black"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
-            <div class="flex flex-wrap gap-3">
-              <% cv.skills.technical.forEach(skill => { %>
+            <h3 class="text-3xl font-bold mb-8 text-white">Technical Skills</h3>
+            <div class="flex flex-wrap gap-4">
               <span
-                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-primary-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >TypeScript</span
               >
-                <%= skill %>
-              </span>
-              <% }) %>
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >React</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Node.js</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Python</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >PostgreSQL</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >AWS</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Docker</span
+              >
             </div>
           </div>
+
           <!-- Frameworks -->
           <div
-            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 skill-card border border-white/10"
           >
             <div
-              class="w-16 h-16 rounded-xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center mb-6"
+              class="w-20 h-20 rounded-2xl bg-gradient-to-br from-electric-500 to-electric-600 flex items-center justify-center mb-8 shadow-xl"
             >
-              <i class="fas fa-layer-group text-2xl text-white"></i>
+              <i class="fas fa-layer-group text-3xl text-black"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-6">Frameworks</h3>
-            <div class="flex flex-wrap gap-3">
-              <% cv.skills.frameworks.forEach(skill => { %>
+            <h3 class="text-3xl font-bold mb-8 text-white">Frameworks</h3>
+            <div class="flex flex-wrap gap-4">
               <span
-                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-electric-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Express.js</span
               >
-                <%= skill %>
-              </span>
-              <% }) %>
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-electric-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Next.js</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-electric-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Vue.js</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-electric-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Django</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-electric-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >FastAPI</span
+              >
             </div>
           </div>
+
           <!-- Tools -->
           <div
-            class="glass-effect rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 skill-card"
+            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 skill-card border border-white/10"
           >
             <div
-              class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center mb-6"
+              class="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center mb-8 shadow-xl"
             >
-              <i class="fas fa-tools text-2xl text-white"></i>
+              <i class="fas fa-tools text-3xl text-black"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-6">Tools</h3>
-            <div class="flex flex-wrap gap-3">
-              <% cv.skills.tools.forEach(skill => { %>
+            <h3 class="text-3xl font-bold mb-8 text-white">Tools</h3>
+            <div class="flex flex-wrap gap-4">
               <span
-                class="px-4 py-2 glass-effect rounded-full text-sm hover:bg-primary-500/20 transition-all duration-300 cursor-pointer hover:scale-105 transform"
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Git</span
               >
-                <%= skill %>
-              </span>
-              <% }) %>
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >VS Code</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Figma</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Postman</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Railway</span
+              >
+              <span
+                class="px-5 py-3 black-glass rounded-full text-sm hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
+                >Vercel</span
+              >
             </div>
           </div>
         </div>
@@ -439,48 +522,99 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 px-6">
+    <section id="experience" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-primary-400 font-mono text-sm mb-2">Career Journey</p>
-          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+        <div class="text-center mb-20">
+          <p class="text-accent-400 font-mono text-sm mb-4 tracking-wider">
+            → Career Journey
+          </p>
+          <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-4">
             Professional Experience
           </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-accent-500 to-electric-500 mx-auto"
+          ></div>
         </div>
         <div class="relative">
           <!-- Timeline Line -->
           <div
-            class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary-500 to-accent-600"
+            class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-accent-500 to-electric-500 opacity-50"
           ></div>
 
-          <% cv.experience.forEach((job, index) => { %>
-          <div
-            class="relative flex items-center mb-12 <%= index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse' %>"
-          >
-            <!-- Timeline Dot -->
+          <!-- Experience Items -->
+          <div class="relative flex items-center mb-16">
             <div
-              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary-500 rounded-full ring-4 ring-primary-500/20 z-10"
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full ring-8 ring-accent-500/20 z-10 shadow-lg"
             ></div>
-
-            <!-- Content -->
-            <div
-              class="ml-16 md:ml-0 md:w-1/2 <%= index % 2 === 0 ? 'md:pr-12' : 'md:pl-12' %>"
-            >
+            <div class="ml-20 md:ml-0 md:w-1/2 md:pr-16">
               <div
-                class="glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:scale-105 transform"
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10"
               >
-                <span class="text-primary-400 font-mono text-sm"
-                  ><%= job.period %></span
+                <span class="text-accent-400 font-mono text-sm tracking-wider"
+                  >2022 - Present</span
                 >
-                <h3 class="text-2xl font-bold mt-2 mb-1"><%= job.title %></h3>
-                <p class="text-accent-400 font-semibold mb-3">
-                  <%= job.company %>
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  Senior Full Stack Developer
+                </h3>
+                <p class="text-electric-400 font-semibold mb-4 text-xl">
+                  Telenor
                 </p>
-                <p class="text-gray-400"><%= job.description %></p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Lead development of scalable web applications using React and
+                  Node.js. Improved application performance by 40% and mentored
+                  junior developers.
+                </p>
               </div>
             </div>
           </div>
-          <% }) %>
+
+          <div class="relative flex items-center mb-16 md:flex-row-reverse">
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-electric-500 rounded-full ring-8 ring-electric-500/20 z-10 shadow-lg"
+            ></div>
+            <div class="ml-20 md:ml-0 md:w-1/2 md:pl-16">
+              <div
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10"
+              >
+                <span class="text-electric-400 font-mono text-sm tracking-wider"
+                  >2020 - 2022</span
+                >
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  Frontend Developer
+                </h3>
+                <p class="text-accent-400 font-semibold mb-4 text-xl">H&M</p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Developed responsive user interfaces and collaborated with
+                  design teams to implement pixel-perfect designs. Built
+                  reusable component libraries.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex items-center">
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-white rounded-full ring-8 ring-white/20 z-10 shadow-lg"
+            ></div>
+            <div class="ml-20 md:ml-0 md:w-1/2 md:pr-16">
+              <div
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10"
+              >
+                <span class="text-gray-400 font-mono text-sm tracking-wider"
+                  >2019 - 2020</span
+                >
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  Junior Developer
+                </h3>
+                <p class="text-white/80 font-semibold mb-4 text-xl">OpenAI</p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Contributed to various projects using modern JavaScript
+                  frameworks. Gained experience in agile development
+                  methodologies.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
