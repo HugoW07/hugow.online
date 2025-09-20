@@ -364,10 +364,10 @@
                     <i class="fab fa-node-js"></i>
                   </div>
                   <div
-                    class="absolute bottom-6 left-6 text-4xl text-blue-400 animate-float"
+                    class="absolute bottom-6 left-6 text-4xl text-orange-400 animate-float"
                     style="animation-delay: 2s"
                   >
-                    <i class="fab fa-python"></i>
+                    <i class="fab fa-swift"></i>
                   </div>
                   <div
                     class="absolute bottom-6 right-6 text-4xl text-electric-400 animate-float"
@@ -620,63 +620,68 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6">
+    <section id="projects" class="py-24 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-primary-400 font-mono text-sm mb-2">Portfolio</p>
-          <h2 class="text-4xl md:text-5xl font-bold gradient-text">
+        <div class="text-center mb-20">
+          <p class="text-accent-400 font-mono text-sm mb-4 tracking-wider">
+            → Portfolio
+          </p>
+          <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-4">
             Featured Projects
           </h2>
+          <div
+            class="w-24 h-1 bg-gradient-to-r from-accent-500 to-electric-500 mx-auto"
+          ></div>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           <% cv.projects.forEach((project, index) => { %>
           <div
-            class="group glass-effect rounded-2xl p-6 hover:bg-white/10 transition-all duration-500 project-card relative overflow-hidden"
+            class="group black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 project-card relative overflow-hidden border border-white/10"
           >
-            <!-- Gradient overlay on hover -->
+            <!-- Shimmer effect on hover -->
             <div
-              class="absolute inset-0 bg-gradient-to-br from-primary-500/0 to-accent-600/0 group-hover:from-primary-500/10 group-hover:to-accent-600/10 transition-all duration-500"
+              class="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             ></div>
 
             <div class="relative z-10">
               <!-- Project Header -->
-              <div class="flex justify-between items-start mb-4">
+              <div class="flex justify-between items-start mb-6">
                 <div
-                  class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center"
+                  class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center shadow-xl"
                 >
-                  <i class="fas fa-folder text-xl text-white"></i>
+                  <i class="fas fa-folder-open text-2xl text-black"></i>
                 </div>
-                <div class="flex space-x-3">
+                <div class="flex space-x-4">
                   <a
                     href="#"
-                    class="text-gray-400 hover:text-primary-400 transition-colors duration-300"
+                    class="text-gray-400 hover:text-accent-400 transition-colors duration-300 hover:scale-110 transform"
                   >
-                    <i class="fas fa-external-link-alt text-lg"></i>
+                    <i class="fas fa-external-link-alt text-xl"></i>
                   </a>
                   <a
                     href="#"
-                    class="text-gray-400 hover:text-primary-400 transition-colors duration-300"
+                    class="text-gray-400 hover:text-electric-400 transition-colors duration-300 hover:scale-110 transform"
                   >
-                    <i class="fab fa-github text-lg"></i>
+                    <i class="fab fa-github text-xl"></i>
                   </a>
                 </div>
               </div>
 
               <!-- Project Content -->
               <h3
-                class="text-xl font-bold mb-3 group-hover:text-primary-400 transition-colors duration-300"
+                class="text-2xl font-bold mb-4 group-hover:text-accent-400 transition-colors duration-300"
               >
                 <%= project.name %>
               </h3>
-              <p class="text-gray-400 mb-6 line-clamp-3">
+              <p class="text-gray-400 mb-8 text-lg leading-relaxed">
                 <%= project.description %>
               </p>
 
               <!-- Tech Stack -->
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-3">
                 <% project.tech.forEach(tech => { %>
                 <span
-                  class="px-3 py-1 text-xs font-mono text-primary-400 glass-effect rounded-full hover:bg-primary-500/20 transition-all duration-300"
+                  class="px-4 py-2 text-sm font-mono text-accent-400 black-glass rounded-full hover:bg-accent-500/20 transition-all duration-300 cursor-pointer hover:scale-110 transform border border-white/10"
                 >
                   <%= tech %>
                 </span>
@@ -688,15 +693,15 @@
         </div>
 
         <!-- View More Button -->
-        <div class="text-center mt-12">
+        <div class="text-center mt-16">
           <a
             href="https://<%= cv.personal.github %>"
             target="_blank"
-            class="inline-flex items-center px-8 py-3 glass-effect rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 group"
+            class="inline-flex items-center px-12 py-4 bg-gradient-to-r from-accent-500 to-electric-500 rounded-full font-semibold text-black hover:from-accent-400 hover:to-electric-400 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-accent-500/50 group text-lg"
           >
             View More Projects
             <i
-              class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+              class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"
             ></i>
           </a>
         </div>
