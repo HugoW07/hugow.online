@@ -3,6 +3,8 @@ import { readFileSync, existsSync } from "fs";
 import ejs from "ejs";
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || "localhost";
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 // CV data
 const cvData = {
@@ -13,7 +15,7 @@ const cvData = {
     phone: "+46 73 510 31 57",
     location: "Växjö, Sweden",
     website: "hugow.online",
-    linkedin: "linkedin.com/in/Hugo Wilinski",
+    linkedin: "linkedin.com/in/hugow07",
     github: "github.com/HugoW07",
   },
   summary:
@@ -125,6 +127,10 @@ async function serveStaticFile(filePath: string): Promise<Response | null> {
       headers: {
         "Content-Type": mimeType,
         "Cache-Control": "public, max-age=3600",
+        // Add security headers
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
       },
     });
   } catch (error) {
@@ -148,12 +154,34 @@ async function renderTemplate(
   return ejs.render(templateContent, data);
 }
 
-// Create Bun server
+// Create Bun server with enhanced security
 const server = Bun.serve({
   port: PORT,
+  hostname: HOST,
   async fetch(req) {
     const url = new URL(req.url);
     const pathname = url.pathname;
+
+    // Security headers for all responses
+    const securityHeaders = {
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY",
+      "X-XSS-Protection": "1; mode=block",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Content-Security-Policy":
+        "default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com;",
+    };
+
+    // Force HTTPS redirect in production
+    if (!isDevelopment && req.headers.get("x-forwarded-proto") !== "https") {
+      return new Response(null, {
+        status: 301,
+        headers: {
+          Location: `https://${req.headers.get("host")}${pathname}`,
+          ...securityHeaders,
+        },
+      });
+    }
 
     try {
       // Handle API routes
@@ -162,6 +190,7 @@ const server = Bun.serve({
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
+            ...securityHeaders,
           },
         });
       }
@@ -175,6 +204,10 @@ const server = Bun.serve({
       ) {
         const staticResponse = await serveStaticFile(pathname);
         if (staticResponse) {
+          // Add security headers to existing response
+          Object.entries(securityHeaders).forEach(([key, value]) => {
+            staticResponse.headers.set(key, value);
+          });
           return staticResponse;
         }
       }
@@ -183,25 +216,41 @@ const server = Bun.serve({
       if (pathname === "/" || pathname.startsWith("/#")) {
         const html = await renderTemplate("index", { cv: cvData });
         return new Response(html, {
-          headers: { "Content-Type": "text/html" },
+          headers: {
+            "Content-Type": "text/html",
+            ...securityHeaders,
+          },
         });
       }
 
       // 404 for other routes
       return new Response("Not Found", {
         status: 404,
-        headers: { "Content-Type": "text/plain" },
+        headers: {
+          "Content-Type": "text/plain",
+          ...securityHeaders,
+        },
       });
     } catch (error) {
       console.error("Server error:", error);
       return new Response("Internal Server Error", {
         status: 500,
-        headers: { "Content-Type": "text/plain" },
+        headers: {
+          "Content-Type": "text/plain",
+          ...securityHeaders,
+        },
       });
     }
   },
 });
 
-console.log(`🚀 CV website running on port ${PORT}`);
-console.log(`📱 Visit: http://localhost:${PORT}`);
+console.log(
+  `🚀 CV website running on ${
+    isDevelopment ? "http" : "https"
+  }://${HOST}:${PORT}`
+);
+console.log(`📱 Visit: ${isDevelopment ? "http" : "https"}://${HOST}:${PORT}`);
 console.log(`⚡ Powered by Bun ${Bun.version}`);
+console.log(
+  `🔒 Security: ${isDevelopment ? "Development" : "Production"} mode`
+);
