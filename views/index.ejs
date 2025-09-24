@@ -255,7 +255,7 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Updated Hero Section with Profile Picture -->
     <section
       id="home"
       class="min-h-screen flex items-center justify-center relative px-6 pt-20"
@@ -326,7 +326,7 @@
             <div
               class="relative w-full h-[600px] flex items-center justify-center"
             >
-              <!-- Main 3D Card -->
+              <!-- Main Profile Card -->
               <div class="absolute inset-0 flex items-center justify-center">
                 <div
                   class="w-96 h-96 black-glass rounded-3xl p-8 glow-effect animate-float relative overflow-hidden neon-border"
@@ -335,44 +335,87 @@
                   <div
                     class="relative z-10 flex flex-col items-center justify-center h-full"
                   >
+                    <!-- Profile Picture Container -->
                     <div
-                      class="w-40 h-40 rounded-full bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center mb-8 animate-pulse shadow-2xl"
+                      class="relative w-48 h-48 rounded-full mb-6 overflow-hidden shadow-2xl ring-4 ring-accent-500/30"
                     >
-                      <i class="fas fa-code text-6xl text-black"></i>
+                      <div
+                        class="relative w-48 h-48 rounded-full mb-6 overflow-hidden shadow-2xl ring-4 ring-accent-500/50"
+                      >
+                        <div
+                          class="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full mb-6 overflow-hidden shadow-2xl ring-4 ring-accent-500/30"
+                        >
+                          <img
+                            src="/images/profile.jpg"
+                            alt="Hugo Wilinski"
+                            class="w-full h-full object-cover transition-all duration-500 hover:scale-110"
+                          />
+                        </div>
+                        <div
+                          class="absolute inset-0 bg-gradient-to-t from-accent-500/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
+                        ></div>
+                      </div>
+                      <div
+                        class="w-full h-full bg-gradient-to-br from-accent-500 to-electric-500 flex items-center justify-center text-6xl text-black font-bold"
+                        style="display: none"
+                      >
+                        H
+                      </div>
+                      <!-- Overlay effect -->
+                      <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-all duration-300"
+                      ></div>
                     </div>
-                    <h3 class="text-3xl font-bold mb-3 gradient-text">
-                      Full Stack
+
+                    <h3
+                      class="text-2xl font-bold mb-2 gradient-text text-center"
+                    >
+                      Hugo Wilinski
                     </h3>
                     <p class="text-gray-400 text-center text-lg">
-                      Creating Digital Excellence
+                      Full Stack Developer
                     </p>
                   </div>
 
                   <!-- Floating Tech Icons -->
                   <div
-                    class="absolute top-6 left-6 text-4xl text-accent-400 animate-float"
+                    class="absolute top-6 left-6 text-3xl text-accent-400 animate-float"
                   >
                     <i class="fab fa-react"></i>
                   </div>
                   <div
-                    class="absolute top-6 right-6 text-4xl text-green-400 animate-float"
+                    class="absolute top-6 right-6 text-3xl text-green-400 animate-float"
                     style="animation-delay: 1s"
                   >
                     <i class="fab fa-node-js"></i>
                   </div>
                   <div
-                    class="absolute bottom-6 left-6 text-4xl text-orange-400 animate-float"
+                    class="absolute bottom-6 left-6 text-3xl text-orange-400 animate-float"
                     style="animation-delay: 2s"
                   >
                     <i class="fab fa-swift"></i>
                   </div>
                   <div
-                    class="absolute bottom-6 right-6 text-4xl text-electric-400 animate-float"
+                    class="absolute bottom-6 right-6 text-3xl text-electric-400 animate-float"
                     style="animation-delay: 3s"
                   >
                     <i class="fab fa-docker"></i>
                   </div>
                 </div>
+              </div>
+
+              <!-- Additional floating elements -->
+              <div
+                class="absolute top-20 left-10 w-20 h-20 black-glass rounded-2xl flex items-center justify-center animate-float border border-white/10"
+                style="animation-delay: 1s"
+              >
+                <i class="fab fa-js-square text-3xl text-yellow-400"></i>
+              </div>
+              <div
+                class="absolute bottom-20 right-10 w-20 h-20 black-glass rounded-2xl flex items-center justify-center animate-float border border-white/10"
+                style="animation-delay: 3s"
+              >
+                <i class="fab fa-aws text-3xl text-orange-400"></i>
               </div>
             </div>
           </div>
@@ -927,8 +970,8 @@
         </div>
         <div class="mt-8 pt-8 border-t border-white/10 text-center">
           <p class="text-gray-400">
-            © 2025 Hugo Wilinski. All rights reserved. Built with passion using Bun,
-            Express & TailwindCSS.
+            © 2025 Hugo Wilinski. All rights reserved. Built with passion using
+            Bun, Express & TailwindCSS.
           </p>
         </div>
       </div>
