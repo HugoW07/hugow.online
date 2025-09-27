@@ -229,7 +229,6 @@
     </div>
   </nav>
 
-  <!-- Replace the entire Hero Section in views/index.ejs (around line 140-280) -->
   <section id="home" class="min-h-screen flex items-center justify-center relative px-6 pt-20">
     <div class="max-w-7xl mx-auto w-full">
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -469,73 +468,87 @@
         </div>
 
         <!-- Education & Skills Items -->
-        <div class="relative flex items-center mb-16">
-          <div
-            class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full ring-8 ring-accent-500/20 z-10 shadow-lg">
+        <div class="relative mb-16">
+          <div class="relative flex items-center mb-16">
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full ring-8 ring-accent-500/20 z-10 shadow-lg">
+            </div>
+          </div>
+          <div class="ml-20 md:ml-0 md:grid md:grid-cols-1 md:place-items-center">
+            <div class="md:w-3/4 lg:w-2/3">
+              <div
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
+                <span class="text-accent-400 font-mono text-sm tracking-wider">2024 – 2025</span>
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  Web Server Programming
+                </h3>
+                <p class="text-accent-400 font-semibold mb-4 text-xl">
+                  Backend & API Development
+                </p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Built RESTful APIs with Node.js and Express. Worked with databases (SQL/NoSQL), authentication (JWT),
+                  and
+                  deployed full-stack applications using cloud platforms.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="ml-20 md:ml-0 md:w-1/2 md:pr-16">
-          <div
-            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
-            <span class="text-accent-400 font-mono text-sm tracking-wider">2024 – 2025</span>
-            <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
-              Web Server Programming
-            </h3>
-            <p class="text-electric-400 font-semibold mb-4 text-xl">
-              Backend & API Development
-            </p>
-            <p class="text-gray-400 text-lg leading-relaxed">
-              Built RESTful APIs with Node.js and Express. Worked with databases (SQL/NoSQL), authentication (JWT), and
-              deployed full-stack applications using cloud platforms.
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <div class="relative flex items-center mb-16 md:flex-row-reverse">
-        <div
-          class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-electric-500 rounded-full ring-8 ring-electric-500/20 z-10 shadow-lg">
-        </div>
-        <div class="ml-20 md:ml-0 md:w-1/2 md:pl-16">
-          <div
-            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
-            <span class="text-electric-400 font-mono text-sm tracking-wider">2023 – 2024</span>
-            <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
-              Web Development 1 & 2
-            </h3>
-            <p class="text-accent-400 font-semibold mb-4 text-xl">
-              Frontend & Responsive Design
-            </p>
-            <p class="text-gray-400 text-lg leading-relaxed">
-              Developed modern, responsive websites using HTML5, CSS3, JavaScript, and frameworks like React.
-              Implemented
-              accessibility standards and mobile-first design principles.
-            </p>
+        <div class="relative mb-16">
+          <div class="relative flex items-center mb-16">
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-electric-500 rounded-full ring-8 ring-electric-500/20 z-10 shadow-lg">
+            </div>
+          </div>
+          <div class="ml-20 md:ml-0 md:grid md:grid-cols-1 md:place-items-center">
+            <div class="md:w-3/4 lg:w-2/3">
+              <div
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
+                <span class="text-electric-400 font-mono text-sm tracking-wider">2023 – 2024</span>
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  Web Development 1 & 2
+                </h3>
+                <p class="text-electric-400 font-semibold mb-4 text-xl">
+                  Frontend & Responsive Design
+                </p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Developed modern, responsive websites using HTML5, CSS3, JavaScript, and frameworks like React.
+                  Implemented accessibility standards and mobile-first design principles.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="relative flex items-center">
-        <div
-          class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-white rounded-full ring-8 ring-white/20 z-10 shadow-lg">
-        </div>
-        <div class="ml-20 md:ml-0 md:w-1/2 md:pr-16">
-          <div
-            class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
-            <span class="text-gray-400 font-mono text-sm tracking-wider">2022-2023</span>
-            <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
-              User Interface Design
-            </h3>
-            <p class="text-white/80 font-semibold mb-4 text-xl">
-              UX & Interaction Principles
-            </p>
-            <p class="text-gray-400 text-lg leading-relaxed">
-              Designed intuitive user interfaces using Figma. Applied usability heuristics, conducted user testing, and
-              translated wireframes into functional prototypes.
-            </p>
+        <div class="relative">
+          <div class="relative flex items-center mb-16">
+            <div
+              class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-white rounded-full ring-8 ring-white/20 z-10 shadow-lg">
+            </div>
+          </div>
+          <div class="ml-20 md:ml-0 md:grid md:grid-cols-1 md:place-items-center">
+            <div class="md:w-3/4 lg:w-2/3">
+              <div
+                class="black-glass rounded-3xl p-8 hover:bg-black/60 transition-all duration-500 hover:scale-105 transform border border-white/10">
+                <span class="text-gray-400 font-mono text-sm tracking-wider">2022-2023</span>
+                <h3 class="text-3xl font-bold mt-3 mb-2 text-white">
+                  User Interface Design
+                </h3>
+                <p class="text-gray-300 font-semibold mb-4 text-xl">
+                  UX & Interaction Principles
+                </p>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                  Designed intuitive user interfaces using Figma. Applied usability heuristics, conducted user testing,
+                  and
+                  translated wireframes into functional prototypes.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- Projects Section -->
